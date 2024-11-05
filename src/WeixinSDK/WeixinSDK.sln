@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeixinSDK.Common", "WeixinSDK.Common\WeixinSDK.Common.csproj", "{ABC8C039-151F-4339-BC89-AFEE7D645537}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeixinSDK.ChatRobot", "WeixinSDK.ChatRobot\WeixinSDK.ChatRobot.csproj", "{23E7D884-E331-4481-A6D4-F2A7D9B63889}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ABC8C039-151F-4339-BC89-AFEE7D645537}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABC8C039-151F-4339-BC89-AFEE7D645537}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABC8C039-151F-4339-BC89-AFEE7D645537}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABC8C039-151F-4339-BC89-AFEE7D645537}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23E7D884-E331-4481-A6D4-F2A7D9B63889}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23E7D884-E331-4481-A6D4-F2A7D9B63889}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23E7D884-E331-4481-A6D4-F2A7D9B63889}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23E7D884-E331-4481-A6D4-F2A7D9B63889}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
