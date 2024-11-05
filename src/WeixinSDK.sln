@@ -4,6 +4,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeixinSDK.Common", "WeixinS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeixinSDK.ChatRobot", "WeixinSDK.ChatRobot\WeixinSDK.ChatRobot.csproj", "{23E7D884-E331-4481-A6D4-F2A7D9B63889}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeixinSDK.ChatRobot.Tests", "..\test\WeixinSDK.ChatRobot.Tests\WeixinSDK.ChatRobot.Tests.csproj", "{53E1D43D-D4F6-43B1-B635-BC338140EB9D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NTests", "NTests", "{C80B3A71-B7B7-4CD5-9573-CA4A7FD3E5AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,12 @@ Global
 		{23E7D884-E331-4481-A6D4-F2A7D9B63889}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23E7D884-E331-4481-A6D4-F2A7D9B63889}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23E7D884-E331-4481-A6D4-F2A7D9B63889}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53E1D43D-D4F6-43B1-B635-BC338140EB9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53E1D43D-D4F6-43B1-B635-BC338140EB9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53E1D43D-D4F6-43B1-B635-BC338140EB9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53E1D43D-D4F6-43B1-B635-BC338140EB9D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{53E1D43D-D4F6-43B1-B635-BC338140EB9D} = {C80B3A71-B7B7-4CD5-9573-CA4A7FD3E5AB}
 	EndGlobalSection
 EndGlobal
