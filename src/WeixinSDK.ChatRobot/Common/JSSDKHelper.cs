@@ -6,7 +6,7 @@ namespace WeixinSDK.Work.Common
     internal class JSSDKHelper
     {
         /// <summary>
-        /// 获取随机字符串
+        ///     获取随机字符串
         /// </summary>
         /// <returns></returns>
         public static string GetNoncestr()
@@ -15,20 +15,20 @@ namespace WeixinSDK.Work.Common
         }
 
         /// <summary>
-        /// 获取时间戳
-        /// <remarks>
-        /// 2016-05-03：修改返回类型，方便GetSignature调用，避免再次类型转换
-        /// </remarks>
+        ///     获取时间戳
+        ///     <remarks>
+        ///         2016-05-03：修改返回类型，方便GetSignature调用，避免再次类型转换
+        ///     </remarks>
         /// </summary>
         /// <returns></returns>
         public static long GetTimestamp()
         {
-            TimeSpan ts = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            var ts = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
             return Convert.ToInt64(ts.TotalSeconds);
         }
 
         /// <summary>
-        /// 获取JS-SDK权限验证的签名Signature
+        ///     获取JS-SDK权限验证的签名Signature
         /// </summary>
         /// <param name="jsapi_ticket">jsapi_ticket</param>
         /// <param name="noncestr">随机字符串(必须与wx.config中的nonceStr相同)</param>
@@ -37,7 +37,7 @@ namespace WeixinSDK.Work.Common
         /// <returns></returns>
         public static string GetSignature(string jsapi_ticket, string noncestr, long timestamp, string url)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("jsapi_ticket=").Append(jsapi_ticket).Append("&")
                 .Append("noncestr=").Append(noncestr).Append("&")
                 .Append("timestamp=").Append(timestamp).Append("&")

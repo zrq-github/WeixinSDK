@@ -10,6 +10,29 @@ namespace WeixinSDK.Work
     public class WeixinWorkApiClient : ApiClientBase
     {
         /// <summary>
+        /// 初始化企业微信API客户端
+        /// </summary>
+        /// <param name="corpId">企业ID</param>
+        /// <param name="corpSecret">应用的凭证密钥</param>
+        public WeixinWorkApiClient(string corpId, string corpSecret) : base(corpId, corpSecret)
+        {
+            Initialize();
+        }
+
+        /// <summary>
+        /// 初始化企业微信API客户端
+        /// </summary>
+        /// <param name="corpId">企业ID</param>
+        /// <param name="agentId">企业应用的ID</param>
+        /// <param name="corpSecret">应用的凭证密钥</param>
+        public WeixinWorkApiClient(string corpId, int agentId, string corpSecret) : base(corpId, agentId, corpSecret)
+        {
+            Initialize();
+
+            if (AgentId <= 0) throw new ArgumentNullException("AgentId");
+        }
+
+        /// <summary>
         /// 成员管理接口
         /// </summary>
         public UserApi User { get; private set; }
@@ -40,50 +63,15 @@ namespace WeixinSDK.Work
         public AgentApi Agent { get; private set; }
 
         /// <summary>
-        /// 初始化企业微信API客户端
-        /// </summary>
-        /// <param name="corpId">企业ID</param>
-        /// <param name="corpSecret">应用的凭证密钥</param>
-        public WeixinWorkApiClient(string corpId, string corpSecret):base(corpId, corpSecret)
-        {
-            Initialize();
-        }
-
-        /// <summary>
-        /// 初始化企业微信API客户端
-        /// </summary>
-        /// <param name="corpId">企业ID</param>
-        /// <param name="agentId">企业应用的ID</param>
-        /// <param name="corpSecret">应用的凭证密钥</param>
-        public WeixinWorkApiClient(string corpId, int agentId, string corpSecret) : base(corpId, agentId, corpSecret)
-        {
-            Initialize();
-
-            if (AgentId <= 0)
-            {
-                throw new ArgumentNullException("AgentId");
-            }
-        }
-
-        /// <summary>
         /// 初始化API Client属性
         /// </summary>
         private void Initialize()
         {
-            if (string.IsNullOrEmpty(BaseUrl))
-            {
-                throw new ArgumentNullException("BaseUrl");
-            }
+            if (string.IsNullOrEmpty(BaseUrl)) throw new ArgumentNullException("BaseUrl");
 
-            if (string.IsNullOrEmpty(CorpId))
-            {
-                throw new ArgumentNullException("CorpId");
-            }
+            if (string.IsNullOrEmpty(CorpId)) throw new ArgumentNullException("CorpId");
 
-            if (string.IsNullOrEmpty(CorpSecret))
-            {
-                throw new ArgumentNullException("CorpSecret");
-            }
+            if (string.IsNullOrEmpty(CorpSecret)) throw new ArgumentNullException("CorpSecret");
 
             User = new UserApi(this);
             Department = new DepartmentApi(this);

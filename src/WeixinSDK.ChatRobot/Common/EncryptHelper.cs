@@ -5,12 +5,12 @@ using System.Text;
 namespace WeixinSDK.Work.Common
 {
     /// <summary>
-    /// 签名加密类
+    ///     签名加密类
     /// </summary>
     internal class EncryptHelper
     {
         /// <summary>
-        /// 获取大写的MD5签名结果
+        ///     获取大写的MD5签名结果
         /// </summary>
         /// <param name="encypStr">需要加密的字符串</param>
         /// <param name="encoding">编码</param>
@@ -18,7 +18,7 @@ namespace WeixinSDK.Work.Common
         public static string GetMD5(string encypStr, Encoding encoding)
         {
             string retStr;
-            MD5CryptoServiceProvider m5 = new MD5CryptoServiceProvider();
+            var m5 = new MD5CryptoServiceProvider();
 
             //创建md5对象
             byte[] inputBye;
@@ -33,6 +33,7 @@ namespace WeixinSDK.Work.Common
             {
                 inputBye = Encoding.GetEncoding("utf-8").GetBytes(encypStr);
             }
+
             outputBye = m5.ComputeHash(inputBye);
 
             retStr = BitConverter.ToString(outputBye);
@@ -41,7 +42,7 @@ namespace WeixinSDK.Work.Common
         }
 
         /// <summary>
-        /// 签名算法
+        ///     签名算法
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
@@ -50,12 +51,12 @@ namespace WeixinSDK.Work.Common
             //建立SHA1对象
             SHA1 sha = new SHA1CryptoServiceProvider();
             //将mystr转换成byte[] 
-            ASCIIEncoding enc = new ASCIIEncoding();
-            byte[] dataToHash = enc.GetBytes(str);
+            var enc = new ASCIIEncoding();
+            var dataToHash = enc.GetBytes(str);
             //Hash运算
-            byte[] dataHashed = sha.ComputeHash(dataToHash);
+            var dataHashed = sha.ComputeHash(dataToHash);
             //将运算结果转换成string
-            string hash = BitConverter.ToString(dataHashed).Replace("-", "");
+            var hash = BitConverter.ToString(dataHashed).Replace("-", "");
             return hash;
         }
     }

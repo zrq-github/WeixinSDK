@@ -5,12 +5,12 @@ using WeixinSDK.Work.Models.Tag;
 namespace WeixinSDK.Work.Apis
 {
     /// <summary>
-    /// 标签管理接口
+    ///     标签管理接口
     /// </summary>
     public class TagApi : ApiBase
     {
         /// <summary>
-        /// 实例化标签管理接口
+        ///     实例化标签管理接口
         /// </summary>
         /// <param name="client"></param>
         public TagApi(ApiClientBase client) : base(client)
@@ -18,8 +18,8 @@ namespace WeixinSDK.Work.Apis
         }
 
         /// <summary>
-        /// 创建标签
-        /// 文档：https://work.weixin.qq.com/api/doc#10915
+        ///     创建标签
+        ///     文档：https://work.weixin.qq.com/api/doc#10915
         /// </summary>
         /// <param name="tag">标签信息</param>
         /// <returns>返回结果</returns>
@@ -30,8 +30,8 @@ namespace WeixinSDK.Work.Apis
         }
 
         /// <summary>
-        /// 更新标签名字
-        /// 文档：https://work.weixin.qq.com/api/doc#10919
+        ///     更新标签名字
+        ///     文档：https://work.weixin.qq.com/api/doc#10919
         /// </summary>
         /// <param name="tag">标签信息</param>
         /// <returns>返回结果</returns>
@@ -42,8 +42,8 @@ namespace WeixinSDK.Work.Apis
         }
 
         /// <summary>
-        /// 删除标签
-        /// 文档：https://work.weixin.qq.com/api/doc#10920
+        ///     删除标签
+        ///     文档：https://work.weixin.qq.com/api/doc#10920
         /// </summary>
         /// <param name="tagid">标签ID</param>
         /// <returns>返回结果</returns>
@@ -54,8 +54,8 @@ namespace WeixinSDK.Work.Apis
         }
 
         /// <summary>
-        /// 获取标签成员
-        /// 文档：https://work.weixin.qq.com/api/doc#10921
+        ///     获取标签成员
+        ///     文档：https://work.weixin.qq.com/api/doc#10921
         /// </summary>
         /// <param name="tagid">标签ID</param>
         /// <returns>返回结果</returns>
@@ -66,8 +66,8 @@ namespace WeixinSDK.Work.Apis
         }
 
         /// <summary>
-        /// 增加标签成员
-        /// 文档：https://work.weixin.qq.com/api/doc#10923
+        ///     增加标签成员
+        ///     文档：https://work.weixin.qq.com/api/doc#10923
         /// </summary>
         /// <param name="request">请求参数</param>
         /// <returns>返回结果</returns>
@@ -78,8 +78,8 @@ namespace WeixinSDK.Work.Apis
         }
 
         /// <summary>
-        /// 删除标签成员
-        /// 文档：https://work.weixin.qq.com/api/doc#10925
+        ///     删除标签成员
+        ///     文档：https://work.weixin.qq.com/api/doc#10925
         /// </summary>
         /// <param name="request">请求参数</param>
         /// <returns>返回结果</returns>
@@ -91,8 +91,8 @@ namespace WeixinSDK.Work.Apis
 
 
         /// <summary>
-        /// 获取标签列表
-        /// 文档：https://work.weixin.qq.com/api/doc#10926
+        ///     获取标签列表
+        ///     文档：https://work.weixin.qq.com/api/doc#10926
         /// </summary>
         /// <returns>返回结果</returns>
         public ListTagResult List()

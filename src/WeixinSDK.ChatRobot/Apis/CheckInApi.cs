@@ -4,12 +4,12 @@ using WeixinSDK.Work.Models.CheckIn;
 namespace WeixinSDK.Work.Apis
 {
     /// <summary>
-    /// 打卡数据接口
+    ///     打卡数据接口
     /// </summary>
     public class CheckInApi : ApiBase
     {
         /// <summary>
-        /// 实例化打卡数据接口
+        ///     实例化打卡数据接口
         /// </summary>
         /// <param name="client"></param>
         public CheckInApi(ApiClientBase client) : base(client)
@@ -17,8 +17,8 @@ namespace WeixinSDK.Work.Apis
         }
 
         /// <summary>
-        /// 获取打卡数据
-        /// 文档：https://work.weixin.qq.com/api/doc#11196
+        ///     获取打卡数据
+        ///     文档：https://work.weixin.qq.com/api/doc#11196
         /// </summary>
         /// <param name="data">请求参数</param>
         /// <returns>返回结果</returns>
@@ -29,7 +29,8 @@ namespace WeixinSDK.Work.Apis
             // 有打卡记录即可获取打卡数据，与当前”打卡应用”是否开启无关
 
             var accessToken = Client.GetToken();
-            return Client.PostAsJson<GetCheckInDataResult>("/checkin/getcheckindata", new { accessToken.access_token}, data);
+            return Client.PostAsJson<GetCheckInDataResult>("/checkin/getcheckindata", new { accessToken.access_token },
+                data);
         }
     }
 }

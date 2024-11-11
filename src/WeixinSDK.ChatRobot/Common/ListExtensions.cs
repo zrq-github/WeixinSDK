@@ -5,7 +5,7 @@ namespace WeixinSDK.Work.Common
     internal static class ListExtensions
     {
         /// <summary>
-        /// 将整数列表转换成分隔符分隔的ID列表字符串返回
+        ///     将整数列表转换成分隔符分隔的ID列表字符串返回
         /// </summary>
         /// <param name="this">整数列表</param>
         /// <param name="separator">分隔符，默认【|】</param>
@@ -16,7 +16,7 @@ namespace WeixinSDK.Work.Common
         }
 
         /// <summary>
-        /// 将整数列表转换成分隔符分隔的ID列表字符串返回
+        ///     将整数列表转换成分隔符分隔的ID列表字符串返回
         /// </summary>
         /// <param name="this">整数列表</param>
         /// <param name="separator">分隔符，默认【|】</param>
@@ -27,7 +27,7 @@ namespace WeixinSDK.Work.Common
         }
 
         /// <summary>
-        /// 将字符串列表转换成分隔符分隔的ID列表字符串返回
+        ///     将字符串列表转换成分隔符分隔的ID列表字符串返回
         /// </summary>
         /// <param name="this">字符串列表</param>
         /// <param name="separator">分隔符，默认【|】</param>

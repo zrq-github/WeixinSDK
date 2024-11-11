@@ -6,47 +6,17 @@ using WeixinSDK.Work.Models.Common;
 namespace WeixinSDK.Work.Common
 {
     /// <summary>
-    /// 企业微信API客户端基类
+    ///     企业微信API客户端基类
     /// </summary>
     public class ApiClientBase : RequestClient
     {
         /// <summary>
-        /// 企业微信API返回错误处理事件
-        /// </summary>
-        public event ApiErrorHandler ApiError;
-
-        /// <summary>
-        /// 基地址
+        ///     基地址
         /// </summary>
         public const string BaseUrl = "https://qyapi.weixin.qq.com/cgi-bin";
 
         /// <summary>
-        /// 企业ID
-        /// </summary>
-        public string CorpId { get; private set; }
-
-        /// <summary>
-        /// 企业应用的ID
-        /// </summary>
-        public int AgentId { get; private set; }
-
-        /// <summary>
-        /// 应用的凭证密钥
-        /// </summary>
-        public string CorpSecret { get; private set; }
-
-        /// <summary>
-        /// 应用的AccessToken
-        /// </summary>
-        public AccessTokenResult AccessTokenResult { get; private set; }
-
-        /// <summary>
-        /// 应用的JsApi凭证
-        /// </summary>
-        public JsApiTicketResult JsApiTicketResult { get; private set; }
-
-        /// <summary>
-        /// 初始化企业微信API客户端
+        ///     初始化企业微信API客户端
         /// </summary>
         /// <param name="corpId">企业ID</param>
         /// <param name="corpSecret">应用的凭证密钥</param>
@@ -57,7 +27,7 @@ namespace WeixinSDK.Work.Common
         }
 
         /// <summary>
-        /// 初始化企业微信API客户端
+        ///     初始化企业微信API客户端
         /// </summary>
         /// <param name="corpId">企业ID</param>
         /// <param name="agentId">企业应用的ID</param>
@@ -70,40 +40,67 @@ namespace WeixinSDK.Work.Common
         }
 
         /// <summary>
-        /// 获取AccessToken
+        ///     企业ID
+        /// </summary>
+        public string CorpId { get; }
+
+        /// <summary>
+        ///     企业应用的ID
+        /// </summary>
+        public int AgentId { get; private set; }
+
+        /// <summary>
+        ///     应用的凭证密钥
+        /// </summary>
+        public string CorpSecret { get; }
+
+        /// <summary>
+        ///     应用的AccessToken
+        /// </summary>
+        public AccessTokenResult AccessTokenResult { get; }
+
+        /// <summary>
+        ///     应用的JsApi凭证
+        /// </summary>
+        public JsApiTicketResult JsApiTicketResult { get; }
+
+        /// <summary>
+        ///     企业微信API返回错误处理事件
+        /// </summary>
+        public event ApiErrorHandler ApiError;
+
+        /// <summary>
+        ///     获取AccessToken
         /// </summary>
         public AccessTokenResult GetToken()
         {
             if (AccessTokenResult == null || AccessTokenResult.ExpireTime <= DateTime.Now)
             {
-                var result = GetAsJson<AccessTokenResult>("/gettoken", new {corpid = CorpId, corpsecret = CorpSecret});
+                var result =
+                    GetAsJson<AccessTokenResult>("/gettoken", new { corpid = CorpId, corpsecret = CorpSecret });
                 return result;
             }
-            else
-            {
-                return AccessTokenResult;
-            }
+
+            return AccessTokenResult;
         }
 
         /// <summary>
-        /// 获取JsApi凭证
+        ///     获取JsApi凭证
         /// </summary>
         public JsApiTicketResult GetJsApiTicket()
         {
             if (JsApiTicketResult == null || JsApiTicketResult.ExpireTime <= DateTime.Now)
             {
                 var accessToken = GetToken();
-                var result = GetAsJson<JsApiTicketResult>("/get_jsapi_ticket", new {accessToken.access_token});
+                var result = GetAsJson<JsApiTicketResult>("/get_jsapi_ticket", new { accessToken.access_token });
                 return result;
             }
-            else
-            {
-                return JsApiTicketResult;
-            }
+
+            return JsApiTicketResult;
         }
 
         /// <summary>
-        /// 创建JSSDK信息包
+        ///     创建JSSDK信息包
         /// </summary>
         /// <param name="url"></param>
         /// <returns></returns>
@@ -113,12 +110,12 @@ namespace WeixinSDK.Work.Common
             var nonceStr = JSSDKHelper.GetNoncestr();
             var timestamp = JSSDKHelper.GetTimestamp();
             var signature = JSSDKHelper.GetSignature(jsApiTicket.ticket, nonceStr, timestamp, url);
-            return new JsSdkUiPackage(appId: CorpId, timestamp: timestamp.ToString(), nonceStr: nonceStr,
-                signature: signature);
+            return new JsSdkUiPackage(CorpId, timestamp.ToString(), nonceStr,
+                signature);
         }
 
         /// <summary>
-        /// GET方式请求URL，并返回T类型
+        ///     GET方式请求URL，并返回T类型
         /// </summary>
         /// <param name="requestUri">请求Uri，相对于BaseUri</param>
         /// <param name="queryObj">解析查询对象(POCO对象)</param>
@@ -126,14 +123,13 @@ namespace WeixinSDK.Work.Common
         public T GetAsJson<T>(string requestUri, object queryObj) where T : JsonResult
         {
             var url = BaseUrl + requestUri;
-            string returnText = Send(url, queryObj, null, HttpMethod.GET);
+            var returnText = Send(url, queryObj);
 
             if (returnText.Contains("errcode"))
             {
                 //可能发生错误
-                JsonResult errorResult = JsonConvert.DeserializeObject<JsonResult>(returnText);
+                var errorResult = JsonConvert.DeserializeObject<JsonResult>(returnText);
                 if (errorResult.errcode != ReturnCode.请求成功)
-                {
                     //发生错误
                     if (ApiError != null)
                     {
@@ -148,20 +144,19 @@ namespace WeixinSDK.Work.Common
                             {
                                 Method = HttpMethod.GET.ToString(),
                                 Url = url,
-                                Query = queryObj,
+                                Query = queryObj
                             }));
                         ApiError(new Exception(msg));
                     }
-                }
             }
 
-            T result = JsonConvert.DeserializeObject<T>(returnText);
+            var result = JsonConvert.DeserializeObject<T>(returnText);
 
             return result;
         }
 
         /// <summary>
-        /// 发起Post请求，并返回T类型
+        ///     发起Post请求，并返回T类型
         /// </summary>
         /// <param name="requestUri">请求Uri，相对于BaseUri</param>
         /// <param name="queryObj">解析查询对象(POCO对象)</param>
@@ -170,14 +165,13 @@ namespace WeixinSDK.Work.Common
         public T PostAsJson<T>(string requestUri, object queryObj, object bodyObj) where T : JsonResult
         {
             var url = BaseUrl + requestUri;
-            string returnText = Send(url, queryObj, bodyObj, HttpMethod.POST);
+            var returnText = Send(url, queryObj, bodyObj, HttpMethod.POST);
 
             if (returnText.Contains("errcode"))
             {
                 //可能发生错误
-                JsonResult errorResult = JsonConvert.DeserializeObject<JsonResult>(returnText);
+                var errorResult = JsonConvert.DeserializeObject<JsonResult>(returnText);
                 if (errorResult.errcode != ReturnCode.请求成功)
-                {
                     //发生错误
                     if (ApiError != null)
                     {
@@ -197,10 +191,9 @@ namespace WeixinSDK.Work.Common
                             }));
                         ApiError(new Exception(msg));
                     }
-                }
             }
 
-            T result = JsonConvert.DeserializeObject<T>(returnText);
+            var result = JsonConvert.DeserializeObject<T>(returnText);
 
             return result;
         }
